@@ -13,8 +13,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.imageio.ImageIO;
-import javax.swing.AbstractButton;
-import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 /**
@@ -25,7 +23,6 @@ import javax.swing.JOptionPane;
 public class VykresliVrstvu extends Canvas implements Runnable {
 
     //runnable - vlákna 
-    private boolean bezi;
     private float score;
     protected BufferedImage pozadi = null;
 
@@ -41,7 +38,6 @@ public class VykresliVrstvu extends Canvas implements Runnable {
             System.out.println(ex);
         }
 
-        this.bezi = false;
 
         this.hrac = new Hrac(this); // vytvoření kráče
         this.addMouseMotionListener(this.hrac);  // naslouchání myši
