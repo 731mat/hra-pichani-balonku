@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HraPichacka.VlastnostiPostavy;
 
 import HraPichacka.VykresliVrstvu;
@@ -13,10 +8,9 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
 /**
  *
- * @author Matěj
+ * @author Matěj Hloušek
  */
 abstract public class VlastnostiPostavy {
     protected int xPozice;
@@ -33,11 +27,13 @@ abstract public class VlastnostiPostavy {
         this.map = l;
 
     }
+    //abstraktví metoda třídy - neobsahuje žádné tělo 
+    // odvozená třída musí tuto metodu předdefinovat
     abstract public void aktualizace();
     abstract public void render(Graphics g);
     
     
-    
+    // vrátí a nastaví pozici X
     public int getXPozice(){
         return xPozice;
     }
@@ -45,7 +41,7 @@ abstract public class VlastnostiPostavy {
         this.xPozice= xPozice;
     }
     
-    
+    // vrátí a nastaví pozici Y
     public int getYPozice(){
         return yPozice;
     }
@@ -53,7 +49,7 @@ abstract public class VlastnostiPostavy {
         this.xPozice= yPozice;
     }
     
-    
+    // vrátí a nastaví šířku objektu
     public int getSirka(){
         return sirka;
     }
@@ -61,18 +57,11 @@ abstract public class VlastnostiPostavy {
         this.sirka= sirka;
     }
     
-    
+    // vrátí a nastaví výšku objektu
     public int getVyska(){
         return vyska;
     } 
     public void setVyska(int vyska){
         this.vyska= vyska;
     }
-    
-    
-    
-    
-    
-  
-    
 }
