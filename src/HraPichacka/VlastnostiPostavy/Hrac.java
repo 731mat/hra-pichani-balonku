@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HraPichacka.VlastnostiPostavy;
 
 import HraPichacka.VykresliVrstvu;
@@ -20,20 +15,20 @@ import javax.swing.JLayeredPane;
 
 /**
  *
- * @author Matěj
+ * @author Matěj Hloušek
  */
 public class Hrac extends VlastnostiPostavy implements MouseMotionListener {
 
     public Hrac(VykresliVrstvu l) {
-        super(l);
-        this.color = Color.GREEN;
+        super(l);   // vykreslí pčedchozí vrstvu
+        this.color = Color.GREEN; //pomyslná barva // lze zapnou
         this.sirka = 10;
         this.vyska = 15;
-        this.xPozice = 800 / 2 - this.sirka / 2;// spřed obrazovky
+        this.xPozice = 800 / 2 - this.sirka / 2;// střed obrazovky
         this.yPozice = 600 / 2 - this.vyska / 2;
         
         try {
-            this.image = ImageIO.read(new File("jehla.png"));
+            this.image = ImageIO.read(new File("jehla.png"));  // nastavení obrázku
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -47,9 +42,9 @@ public class Hrac extends VlastnostiPostavy implements MouseMotionListener {
     @Override
     public void render(Graphics g) {
         //vyrendrování hrace podle udajů
-        g.setColor(this.color);
-        //g.fillRect(this.xPozice, this.yPozice, this.sirka, this.vyska);
-        g.drawImage(image, this.xPozice-5, this.yPozice-20, null);
+        g.setColor(this.color); // nastavení barvy pomyslného čtverce (viz. 45 řádek podtím)
+        //g.fillRect(this.xPozice, this.yPozice, this.sirka, this.vyska);  // vykreslení čtverce který říká jakým prostorem balónky zasáhne
+        g.drawImage(image, this.xPozice-5, this.yPozice-20, null);  // vykreslení obrázku
 
     }
 
