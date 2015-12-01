@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package HraPichacka.VlastnostiPostavy;
 
 import HraPichacka.Vector;
@@ -17,29 +12,32 @@ import javax.imageio.ImageIO;
 
 /**
  *
- * @author Matěj
+ * @author Matěj Hloušek
  */
 public class Nepritel extends VlastnostiPostavy {
 
     private Vector SmerovyVektor;  // proměnná smeru pohybu
 
     public Nepritel(VykresliVrstvu l) {
-        super(l);
-
+        super(l); // vykreslení vyrstvy
+        // pole barev
         Color[] barvy = new Color[]{Color.RED, Color.BLUE, Color.YELLOW, Color.BLACK, Color.PINK, Color.ORANGE};
-        Random rand = new Random();
-        this.color = barvy[rand.nextInt(barvy.length - 1)];
+        Random rand = new Random();  // náhodné číslo
+        this.color = barvy[rand.nextInt(barvy.length - 1)]; // nastavení narvy z polebarev vybráné náhodným číslem
         
-        this.SmerovyVektor = new Vector (rand.nextInt(4), rand.nextInt(4)); // vložení hodnot jako směr pohybu
+        this.SmerovyVektor = new Vector (rand.nextInt(4), rand.nextInt(4)); // vložení náhodných hodnot jako směr pohybu
+                                                                            // čím větčí tím rychlejší 
 
-        this.xPozice = rand.nextInt(750);
+        // vygenerování základní (výchozí) pozice
+        this.xPozice = rand.nextInt(750); 
         this.yPozice = rand.nextInt(550);
-
+        
+        // nastavení velikosti zásahového pole 
         this.sirka = 35;
         this.vyska = 40;
         
         try {
-            this.image = ImageIO.read(new File("balonek"+rand.nextInt(7)+".png"));
+            this.image = ImageIO.read(new File("balonek"+rand.nextInt(7)+".png"));  // načtení náhodného obrázku 
         } catch (IOException ex) {
             System.out.println(ex);
         }
@@ -47,16 +45,18 @@ public class Nepritel extends VlastnostiPostavy {
 
     @Override
     public void aktualizace() {
-        this.xPozice += this.SmerovyVektor.getX();  // generování pohybu
+        
+        // generování pohybu (přičte hodnotu předem vygenerováného směrového vektoru)
+        this.xPozice += this.SmerovyVektor.getX(); 
         this.yPozice += this.SmerovyVektor.getY();
         
         
-        //když narazí do pravé hravy když do levé tak je to ElseIF a když narazi tak znemi smer na opavni 
+        //když narazí do pravé hravy tak se směrovému vektoru změní znaménko jedné souřadnice
         if(this.xPozice + this.sirka > 800){
-            this.xPozice = 800 - this.sirka;
+            this.xPozice = 800 - this.sirka; // vrátím objekt do okna
             this.SmerovyVektor.zmenaSmeru(Vector.xSmer);// tento vekktor když narazí tak se vyvolá funkce zmena smeru která zmeni
                                                         // znamenko u souradnice na např. zaporne
-        }else if(this.xPozice <0){
+        }else if(this.xPozice < 0){        //když narazí do levé hravy tak se směrovému vektoru změní znaménko jedné souřadnice
             this.xPozice = 0;
             this.SmerovyVektor.zmenaSmeru(Vector.xSmer);
         }
